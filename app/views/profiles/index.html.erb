@@ -1,0 +1,39 @@
+<div class="col-md-8">
+  <div class="">
+    <h1>Hi <%= @user_info.name %></h1>
+  </div>
+  <div class="">
+    <%= image_tag @user_info.avatar_url, size: 100 %>
+  </div>
+  <div class="">
+    <h3>You have exposed the following information:</h3>
+  </div>
+  <div class="">
+    <h3>You have <%= @user_info.followers %> followers</h3>
+  </div>
+  <div class="">
+    <h3>You are following <%= @user_info.following %> other people</h3>
+  </div>
+  <div class="">
+    <h3>You have <%= pluralize @starred_repos.count, 'starred repo' %></h3>
+  </div>
+  <div class="">
+    
+  </div>
+  <div class="">
+    <h3>Recent activity feed (last 5)</h3>
+    <table class='table-striped'>
+      <th>Repo</th>
+      <th>Date</th>
+      <% @recent_activity[0..4].each do |activity| %>
+        <tr>
+          <td><%= link_to activity['repo']['name'],activity['repo']['url'] %></td>
+          <td><%= activity['created_at'] %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="">
+    <h3>access_token: <%= session[:token] %></h3>
+  </div>
+</div>
